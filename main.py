@@ -85,7 +85,7 @@ def send_email(to, subject):
     # Format the first day of the week date time to mm/dd/yyyy, concatinate -> between it and the formatted last day of the week (friday) of mm/dd/yyyy
     date_range = first_day_of_week.strftime('%m-%d-%Y') + ' -> ' + last_day_of_week.strftime('%m-%d-%Y')
     
-    # Format the body of the email #evyxgvudqjvlxzkv
+    # Format the body of the email
     body = """
     Katie, 
 
@@ -112,7 +112,7 @@ def send_email(to, subject):
     # Add the timesheets file as an attachment
     with open(attachment_path, "rb") as f: # <- With opens the file at the file path. Closes the file once this block is executed too.
         attach = MIMEApplication(f.read(),_subtype="xlsx") 
-        attach.add_header('Content-Disposition','attachment',filename="Timesheet: {} - {}".format(first_day_of_week, last_day_of_week))
+        attach.add_header('Content-Disposition','attachment',filename="Timesheet - {} - {}.xlsx".format(first_day_of_week, last_day_of_week))
         emailMessage.attach(attach)
 
     # Set up the SMTP server
@@ -120,7 +120,7 @@ def send_email(to, subject):
     smtp_server = "smtp.gmail.com"
     port = 587
     sender_email = 'garrisongeho1992@gmail.com'
-    password = input("Type your password and press enter: ") 
+    password = input("Input Password: ")
 
     # Create secure SSL connection
     context = ssl.create_default_context()
