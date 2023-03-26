@@ -120,7 +120,11 @@ def send_email(to, subject, body):
     smtp_server = "smtp.gmail.com"
     port = 587
     sender_email = 'garrisongeho1992@gmail.com'
+<<<<<<< HEAD
     password = input("Type your password and press enter: ")
+=======
+    password = input("Type your password and press enter: ") 
+>>>>>>> d0f06aabeba0611ac0b417a72d6ed4e4cf2cf28c
     
     # Create secure SSL connection
     context = ssl.create_default_context()
