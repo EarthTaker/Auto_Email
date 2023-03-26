@@ -1,0 +1,17 @@
+Questions:
+
+What is the difference between a module and a library?
+
+A: A library is to a library as a module is to a book in that library, i.e., libraries are a collection of modules, and a module is a single python file that contains functions, classes, and variables.
+
+What is a time delta?
+
+A: It is a duration of time. In python, it is an object that represents a duration in terms of days, seconds, and microseconds, with optional arguments for hours, minutes, and miliseconds. 
+
+Why does the body need """?
+
+A: """ is for multi-line comments.
+
+What is MIME? 
+
+A: Multipurpose Internet Mail Extension (Protocol)
