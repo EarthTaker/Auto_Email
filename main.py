@@ -72,7 +72,7 @@ def generate_Date_Range():
     return first_day_of_week, last_day_of_week
 
 # Function to send email.
-def send_email(to, subject, body):
+def send_email(to, subject):
     # Set up the email message
     # Build out the email template, assign it to the object emailMessage.
     emailMessage = MIMEMultipart()
@@ -85,7 +85,7 @@ def send_email(to, subject, body):
     # Format the first day of the week date time to mm/dd/yyyy, concatinate -> between it and the formatted last day of the week (friday) of mm/dd/yyyy
     date_range = first_day_of_week.strftime('%m-%d-%Y') + ' -> ' + last_day_of_week.strftime('%m-%d-%Y')
     
-    # Format the body of the email
+    # Format the body of the email #evyxgvudqjvlxzkv
     body = """
     Katie, 
 
@@ -120,15 +120,14 @@ def send_email(to, subject, body):
     smtp_server = "smtp.gmail.com"
     port = 587
     sender_email = 'garrisongeho1992@gmail.com'
-<<<<<<< HEAD
-    password = input("Type your password and press enter: ")
-=======
     password = input("Type your password and press enter: ") 
->>>>>>> d0f06aabeba0611ac0b417a72d6ed4e4cf2cf28c
-    
+
     # Create secure SSL connection
     context = ssl.create_default_context()
 
+    # Boolean to check if server sent or failed.
+    sentSuccessfully = True
+    
     try: 
         # Start the SMTP server
         server = smtplib.SMTP(smtp_server, port)
@@ -142,12 +141,14 @@ def send_email(to, subject, body):
         server.sendmail(sender_email, to, emailMessage.as_string())
         
     except Exception as e:
+        sentSuccessfully = False
         print(e)
 
     # Close the SMTP server
     server.quit()
     
-    print("Email successfully sent to: {}. Date Range: {} -> {}".format(to, first_day_of_week, last_day_of_week))
+    if(sentSuccessfully):
+        print("Email successfully sent to: {}. Date Range: {} -> {}".format(to, first_day_of_week, last_day_of_week))
 
 # Grab first and last day of week
 first_day_of_week, last_day_of_week = generate_Date_Range()
