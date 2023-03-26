@@ -120,7 +120,7 @@ def send_email(to, subject, body):
     smtp_server = "smtp.gmail.com"
     port = 587
     sender_email = 'garrisongeho1992@gmail.com'
-    password = input("Type your password and press enter: ") # evyxgvudqjvlxzkv <- Google App Password
+    password = input("Type your password and press enter: ") 
     
     # Create secure SSL connection
     context = ssl.create_default_context()
