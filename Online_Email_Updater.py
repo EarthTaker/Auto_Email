@@ -1,7 +1,4 @@
 import pandas as pd
-from openpyxl import Workbook
-from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl import load_workbook
 import datetime as DTM
 
 # Function to generate date range for email body, i.e., MM-DD-YYYY -> MM-DD-YYYY
@@ -199,9 +196,7 @@ def populate_data_manual(dataFrame, dateRange):
 
 def save_to_excel(dataframe, first_day, last_day):
     # Load the existing workbook
-    file_url = "https://ctcands-my.sharepoint.com/:x:/r/personal/carloshun_coffeetreegroup_com/_layouts/15/Doc.aspx?sourcedoc=%7B6FFD963B-2C20-4A91-A7EA-769B704DEF6A%7D&file=TimeReport_GarrisonGeho.xlsx&wdLOR=c297EE1A2-B5E5-4134-80BF-E29DEA93D051&_DSL=1&action=default&mobileredirect=true&cid=0e7ce07b-90cc-4b2c-93f3-ea4b4009ab0d"
-
-
+    url = "https://ctcands-my.sharepoint.com/:x:/r/personal/carloshun_coffeetreegroup_com/_layouts/15/Doc.aspx?sourcedoc=%7B6FFD963B-2C20-4A91-A7EA-769B704DEF6A%7D&file=TimeReport_GarrisonGeho.xlsx&wdLOR=c297EE1A2-B5E5-4134-80BF-E29DEA93D051&_DSL=1&action=default&mobileredirect=true&cid=0e7ce07b-90cc-4b2c-93f3-ea4b4009ab0d"
 
 if __name__ == '__main__':
     prompt_user(dataFrame)
