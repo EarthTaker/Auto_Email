@@ -22,8 +22,24 @@ def generate_Date_Range():
     #Return populated range of dates and the first and last day of week.
     return dateRange, first_day_of_week, last_day_of_week
 
+#Regardless of timesheet generation, grab first and last day of week.
+dateRange, first_day, last_day = generate_Date_Range()
+
+#Create empty data Dictionary
+data = {
+    'Date': [],
+    'Customer:Team': [],
+    'Name': [],
+    'Start Time': [],
+    'End Time': [],
+    'Hours Worked': []
+}
+
+#Create Data frame from data Dictionary
+dataFrame = pd.DataFrame(data, index=None).fillna('')
+
 # Main Function - Application Starting Point
-def prompt_user():
+def prompt_user(dataFrame):
     
     while True:
         print()
@@ -39,22 +55,6 @@ def prompt_user():
         
         #Set up while loop condition
         choice = input("Awaiting Input: ")
-        
-        #Regardless of timesheet generation, grab first and last day of week.
-        dateRange, first_day, last_day = generate_Date_Range()
-        
-        #Create empty data Dictionary
-        data = {
-            'Date': [],
-            'Customer:Team': [],
-            'Name': [],
-            'Start Time': [],
-            'End Time': [],
-            'Hours Worked': []
-        }
-        
-        #Create Data frame from data Dictionary
-        dataFrame = pd.DataFrame(data, index=None).fillna('')
         
         #Format data frame
         dataFrame = dataFrame[['Date', 'Customer:Team', 'Name', 'Start Time', 'End Time', 'Hours Worked']]
@@ -83,10 +83,12 @@ def prompt_user():
             print("<============================================================>")
             print()
             
-            submitNow = input("Y / N").lower()
+            submitNow = input("Approve Timesheet - Y / N: ")
             
-            if submitNow == True:
-                print("Generate Total for all hours")
+            if submitNow == "y".lower():
+                save_to_excel(dataFrame, first_day, last_day)
+            else:
+                continue
             
             #Call to function that adds sheet to online workbook
             return False
@@ -195,5 +197,11 @@ def populate_data_manual(dataFrame, dateRange):
     # Return the updated data frame
     return dataFrame
 
+def save_to_excel(dataframe, first_day, last_day):
+    # Load the existing workbook
+    file_url = "https://ctcands-my.sharepoint.com/:x:/r/personal/carloshun_coffeetreegroup_com/_layouts/15/Doc.aspx?sourcedoc=%7B6FFD963B-2C20-4A91-A7EA-769B704DEF6A%7D&file=TimeReport_GarrisonGeho.xlsx&wdLOR=c297EE1A2-B5E5-4134-80BF-E29DEA93D051&_DSL=1&action=default&mobileredirect=true&cid=0e7ce07b-90cc-4b2c-93f3-ea4b4009ab0d"
+
+
+
 if __name__ == '__main__':
-    prompt_user()
+    prompt_user(dataFrame)
